@@ -321,7 +321,7 @@ def train(epoch=1):
             losses[s] = loss
 
         lmin, lpos = torch.min(losses, 0)
-        running_avg = prho * running_avg + (1 - prho) * lmin[0]
+        running_avg = prho * running_avg + (1 - prho) * lmin.item()
 
         loss = F.cross_entropy(pred, laball[:, lpos[0].data].squeeze(1))
         totloss = totloss + lmin[0]
